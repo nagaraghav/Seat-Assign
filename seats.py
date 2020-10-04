@@ -13,7 +13,13 @@ filename - Name of CSV file of Roster
 
 def readRosterWithCondition(myf, filename):
 
-    with open(filename) as csv_file:
+    try:
+        myfile = open(filename) 
+    except IOError:
+        print("Could not open file. Plese check file name.")
+        return
+
+    with myfile as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
 
         for i, row in enumerate(csv_reader):
