@@ -26,7 +26,7 @@ def readRosterWithCondition(myf, filename):
                 if(len(row) != 4):
                     print("Missing information in roster on row: ", i)
 
-                #If meets condition, print student details to terminal
+                # If meets condition, print student details to terminal
                 if(myf(row)):
                     print(row)
 
@@ -102,6 +102,8 @@ Reads the entered arguments, creates a myCondition function and passes it on to 
 python3 seats.py [command] [roster csv filename]
 
 """
+
+
 def main():
     if len(sys.argv) < 3:
         print("Too few arguments. Please pass in command and file.")
