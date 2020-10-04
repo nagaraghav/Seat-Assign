@@ -9,9 +9,9 @@ Python script which allows you to find students whose name or email matches a gi
 python3 seats.py [command] [roster csv filename]
 
 ## Sample Commands
-python3 seats.py "-gpa 3.2+" roster.csv \n
-python3 seats.py "-name cel" roster.csv \n
-python3 seats.py "-email \\.(com|net)" roster.csv
+python3 seats.py "-gpa 3.2+" roster.csv  
+python3 seats.py "-name cel" roster.csv  
+python3 seats.py "-email \\.(com|net)" roster.csv  
 
 ## Implementation:
 I made the script modular and broke down the commands into 3 functions which return a 'condition' function to check if a student fits the pattern. 
