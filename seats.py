@@ -12,16 +12,13 @@ filename - Name of CSV file of Roster
 
 
 def readRosterWithCondition(myf, filename):
+
     with open(filename) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
-        line_count = 0
 
         for i, row in enumerate(csv_reader):
 
-            if line_count == 0:
-                line_count += 1
-            else:
-
+            if i > 0:
                 # Makes sures each row has 4 columns for student details (firstname, lastname, email, gpa)
                 if(len(row) != 4):
                     print("Missing information in roster on row: ", i)
@@ -30,7 +27,7 @@ def readRosterWithCondition(myf, filename):
                 if(myf(row)):
                     print(row)
 
-                line_count += 1
+                
 
 
 """[summary]
@@ -65,7 +62,7 @@ pat - regualar expression pattern entered by user
 
 
 def createEmailCondition(pat):
-
+    pat = pat.lower()
     def gpaf(row):
         matchObj = re.search(pat, row[2].lower())
         if matchObj:
@@ -84,7 +81,8 @@ pat - regualar expression pattern entered by user
 
 
 def createNameCondition(pat):
-
+    #Lowercase pattern, because we want case insensitive search
+    pat = pat.lower()
     def gpaf(row):
 
         matchObj_first = re.search(pat, row[0].lower())
@@ -108,11 +106,16 @@ def main():
     if len(sys.argv) < 3:
         print("Too few arguments. Please pass in command and file.")
 
+    #get the 2 arguments 
     command = sys.argv[1]
     filename = sys.argv[2]
 
+    #breaks down command into command and pattern
     com, pattern = command.split(" ", 1)
 
+
+
+    #make myCondition according to command
     myCondition = None
     if(com == "-gpa"):
         myCondition = createGpaCondition(pattern)
